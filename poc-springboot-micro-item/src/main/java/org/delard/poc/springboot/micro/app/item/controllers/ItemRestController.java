@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ItemRestController {
 	
 	@Autowired
-	@Qualifier("serviceFeign")
+	//@Qualifier("serviceFeign")
+	@Qualifier("serviceRestTemplate")
 	private IItemsService itemService;
 	
 	@GetMapping("/listar")

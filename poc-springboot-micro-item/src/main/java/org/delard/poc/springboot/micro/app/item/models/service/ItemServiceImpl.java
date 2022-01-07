@@ -20,7 +20,7 @@ public class ItemServiceImpl implements IItemsService{
 	// Devuelve una lista de Items (de futura factura o pedido) usando la lista completa de productos
 	@Override
 	public List<Item> findAll() {
-		var productos = Arrays.asList(clienteRest.getForObject("http://localhost:8001/listar", Producto[].class));
+		var productos = Arrays.asList(clienteRest.getForObject("http://servicio-productos/listar", Producto[].class));
 		return productos.stream().map(p -> new Item(p,1)).collect(Collectors.toList());
 	}
 
@@ -29,7 +29,7 @@ public class ItemServiceImpl implements IItemsService{
 	public Item findById(Long id, Integer cantidad) {
 		var pathVariables = new HashMap<String, String>(); 
 		pathVariables.put("id", id.toString());
-		var producto = clienteRest.getForObject("http://localhost:8001/ver/{id}", Producto.class, pathVariables);
+		var producto = clienteRest.getForObject("http://servicio-productos/ver/{id}", Producto.class, pathVariables);
 		return new Item(producto, cantidad);
 
 	}
