@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -31,6 +32,9 @@ public class Producto implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
 
+	@Transient
+	private Integer port;
+	
 	public Producto() {}
 
 	public Producto(String nombre, Double precio) {
@@ -71,11 +75,23 @@ public class Producto implements Serializable{
 		this.createAt = createAt;
 	}
 
+	public Integer getPort() {
+		return port;
+	}
+
+	public void setPort(Integer port) {
+		this.port = port;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Producto [id=").append(id).append(", nombre=").append(nombre).append(", precio=").append(precio)
-				.append(", createAt=").append(createAt).append("]");
+		builder.append("Producto [id=").append(id)
+						.append(", nombre=").append(nombre)
+						.append(", precio=").append(precio)
+						.append(", createAt=").append(createAt)
+						.append(", port=").append(port)
+						.append("]");
 		return builder.toString();
 	}
 	
