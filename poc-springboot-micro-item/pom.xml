@@ -5,7 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.2</version>
+		<!--version>-2.6.2</version--><!-- Version current -->
+		<version>2.3.12.RELEASE</version><!-- Version prueba para Netflix Ribbon -->
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.delard.poc.springboot.micro.app.item</groupId>
@@ -15,7 +16,8 @@
 	<description>Demo project for Spring Boot Microservices - Item</description>
 	<properties>
 		<java.version>11</java.version>
-		<spring-cloud.version>2021.0.0</spring-cloud.version>
+		<!--spring-cloud.version>2021.0.0</spring-cloud.version--><!-- Version current -->
+		<spring-cloud.version>Hoxton.SR12</spring-cloud.version><!-- Version prueba para Netflix Ribbon -->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -37,6 +39,10 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
 		</dependency>
 	</dependencies>
 
