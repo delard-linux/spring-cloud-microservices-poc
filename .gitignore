@@ -41,7 +41,7 @@ hs_err_pid*
 **/target/
 
 # documentacion adicional que no hay que subir
-/docs/
+/docs/**
 
 # maven related
 **/.mvn/
