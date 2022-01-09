@@ -33,7 +33,7 @@ public class EjemploGatewayFilterFactory extends AbstractGatewayFilterFactory<Ej
 														 .build());
 						});
 				
-				log.info("ejecutando POST gateway filter factory".concat(config.mensaje));
+				log.info("ejecutando POST gateway filter factory: ".concat(config.mensaje));
 				}));
 			};
 	}

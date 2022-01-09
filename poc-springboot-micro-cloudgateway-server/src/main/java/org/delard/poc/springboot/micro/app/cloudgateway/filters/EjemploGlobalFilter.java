@@ -49,7 +49,8 @@ public class EjemploGlobalFilter implements GlobalFilter, Ordered{
 
 	@Override
 	public int getOrder() {
-		return -1;
+		// para que  no de error ya que -1 impide que se pueda escribir sobre la respuesta
+		return 1;
 	}
 
 }
