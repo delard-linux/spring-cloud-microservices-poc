@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -22,7 +24,14 @@ public class ItemRestController {
 	private IItemsService itemService;
 	
 	@GetMapping("/listar")
-	public List<Item> listar() {
+	public List<Item> listar(
+				@RequestParam(name="nombre") String nombre,
+				@RequestHeader(name="token-request") String token
+				) {
+		
+		System.out.println("Configuracion por filtro de fabrica: ");
+		System.out.println(" nombre = " + nombre);
+		System.out.println(" token-request = " + token);
 		
 		return itemService.findAll();
 						
