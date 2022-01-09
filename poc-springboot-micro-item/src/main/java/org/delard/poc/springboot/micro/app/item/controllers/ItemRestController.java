@@ -25,8 +25,8 @@ public class ItemRestController {
 	
 	@GetMapping("/listar")
 	public List<Item> listar(
-				@RequestParam(name="nombre") String nombre,
-				@RequestHeader(name="token-request") String token
+				@RequestParam(name="nombre", required = false) String nombre,
+				@RequestHeader(name="token-request", required = false) String token
 				) {
 		
 		System.out.println("Configuracion por filtro de fabrica: ");
