@@ -1,4 +1,4 @@
-package org.delard.poc.springboot.micro.app.cloudgateway.filters;
+package org.delard.poc.springboot.micro.app.cloudgateway.filtersfactory;
 
 import java.util.Arrays;
 import java.util.List;
