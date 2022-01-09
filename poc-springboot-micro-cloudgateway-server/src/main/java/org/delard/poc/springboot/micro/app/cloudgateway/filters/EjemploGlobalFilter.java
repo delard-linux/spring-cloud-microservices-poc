@@ -1,5 +1,7 @@
 package org.delard.poc.springboot.micro.app.cloudgateway.filters;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -19,10 +21,23 @@ public class EjemploGlobalFilter implements GlobalFilter{
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 		log.info("Ejecutando filtro PRE");
+		
+		// se muta la cabecera y se le añade un atributo
+		exchange.getRequest().mutate().headers(h -> h.add("token", "1234678"));
+		
 		//hasta chain.filter es el pre filter
 		//lo que está dentro del then es el post filter
 		return chain.filter(exchange).then(Mono.fromRunnable(() -> {
 						log.info("Ejecutando filtro POST");
+						
+						//se obtiene la cabecera del pre para pasarsela a la respuesta como header
+						// en caso de que exista con el Optional
+						Optional.ofNullable(exchange.getRequest().getHeaders().getFirst("token"))
+									.ifPresent(
+											valor ->
+											exchange.getResponse().getHeaders().add("token", valor)
+											);
+						
 						//añadimos una cookie
 						exchange.getResponse().getCookies()
 							.add("color", ResponseCookie.from("color","rojo").build());
