@@ -3,7 +3,6 @@ package org.delard.poc.springboot.micro.app.item.models.service;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.delard.poc.springboot.micro.app.item.models.Item;
 import org.delard.poc.springboot.micro.app.item.models.Producto;
@@ -21,7 +20,7 @@ public class ItemServiceImpl implements IItemsService{
 	@Override
 	public List<Item> findAll() {
 		var productos = Arrays.asList(clienteRest.getForObject("http://servicio-productos/listar", Producto[].class));
-		return productos.stream().map(p -> new Item(p,1)).collect(Collectors.toList());
+		return productos.stream().map(p -> new Item(p,1)).toList();
 	}
 
 	// Devuelve un Item (de futura factura o pedido) a partir del id de un producto y la cantidad 

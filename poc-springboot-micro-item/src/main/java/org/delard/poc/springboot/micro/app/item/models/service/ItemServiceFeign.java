@@ -1,7 +1,6 @@
 package org.delard.poc.springboot.micro.app.item.models.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.delard.poc.springboot.micro.app.item.clientes.ProductoClienteRest;
 import org.delard.poc.springboot.micro.app.item.models.Item;
@@ -20,7 +19,7 @@ public class ItemServiceFeign implements IItemsService {
 	@Override
 	public List<Item> findAll() {
 		return productoClienteRestFeign.listar()
-				.stream().map(p -> new Item(p,1)).collect(Collectors.toList());
+				.stream().map(p -> new Item(p,1)).toList();
 	}
 
 	// Devuelve un Item (de futura factura o pedido) a partir del id de un producto y la cantidad 
