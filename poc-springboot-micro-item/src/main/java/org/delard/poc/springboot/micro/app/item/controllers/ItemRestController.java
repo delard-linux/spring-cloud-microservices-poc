@@ -49,11 +49,14 @@ public class ItemRestController {
 		// de forma programatica en caso de error se llama a unmetodo alternativo
 		return cbFactory.create("items")
 				.run(() -> itemService.findById(id, cantidad),
-						e-> metodoAlternativo(id, cantidad));
+						e-> metodoAlternativo(id, cantidad, e));
 		
 	}	
 
-	public Item metodoAlternativo(Long id, Integer cantidad) {
+	public Item metodoAlternativo(Long id, Integer cantidad, Throwable e) {
+
+		log.error("Ejecucion de metodo alternativo debido a excepcion: {}", e.getMessage());
+		
 		Item item = new Item();
 		Producto producto = new Producto();
 		

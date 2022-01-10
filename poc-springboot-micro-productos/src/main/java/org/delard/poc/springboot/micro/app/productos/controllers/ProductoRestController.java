@@ -1,6 +1,7 @@
 package org.delard.poc.springboot.micro.app.productos.controllers;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.delard.poc.springboot.micro.app.productos.models.entity.Producto;
 import org.delard.poc.springboot.micro.app.productos.models.service.IProductoService;
@@ -34,7 +35,12 @@ public class ProductoRestController {
 	}
 	
 	@GetMapping("/ver/{id}")
-	public Producto detail(@PathVariable Long id) {
+	public Producto detail(@PathVariable Long id) throws InterruptedException{
+		
+		if (id.equals(10L)) 
+			throw new IllegalStateException("Producto no encontrado");
+		if (id.equals(7L)) 
+			TimeUnit.SECONDS.sleep(5L);
 		
 		var producto = productoService.findById(id);
 		producto.setPort(Integer.parseInt(env.getProperty("local.server.port")));
