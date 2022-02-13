@@ -23,16 +23,16 @@ public class AppConfig {
 	}
 	
 	public Customizer<Resilience4JCircuitBreakerFactory> defaultCustomizer(){
-		return factory -> factory.configureDefault(id -> {
-					return new Resilience4JConfigBuilder(id)
-							.circuitBreakerConfig(CircuitBreakerConfig.custom()
-									.slidingWindowSize(10)
-									.failureRateThreshold(50)
-									.waitDurationInOpenState(Duration.ofSeconds(10L))
-									.build())
-							.timeLimiterConfig(TimeLimiterConfig.ofDefaults())
-							.build();
-				}); 
+		return factory -> factory.configureDefault(id -> new Resilience4JConfigBuilder(id)
+				.circuitBreakerConfig(CircuitBreakerConfig.custom()
+						.slidingWindowSize(10)
+						.failureRateThreshold(50)
+						.waitDurationInOpenState(Duration.ofSeconds(10L))
+						.build())
+				.timeLimiterConfig(TimeLimiterConfig.custom()
+						.timeoutDuration(Duration.ofSeconds(2L))
+						.build())
+				.build());
 	} 
 	
 	
